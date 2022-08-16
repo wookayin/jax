@@ -3068,7 +3068,7 @@ class LaxBackedNumpyTests(jtu.JaxTestCase):
       return q, r
 
     args_maker = lambda: [rng(a_shape, dtype), rng(b_shape, dtype)]
-    tol = {np.float16: 2e-1, np.float32: 5e-2, np.float64: 1e-13}
+    tol = {dtypes.bfloat16: 2e-1, np.float16: 2e-1, np.float32: 5e-2, np.float64: 1e-13}
 
     jnp_compile = jnp.polydiv # Without trim_leading_zeros (trim_zeros make it unable to be compiled by XLA)
     self._CheckAgainstNumpy(np_fun, jnp_fun, args_maker, check_dtypes=False, tol=tol)
